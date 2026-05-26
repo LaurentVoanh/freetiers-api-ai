@@ -220,18 +220,18 @@ class Database {
         ");
         
         foreach ($models as $model) {
-            $stmt->bindValue(':platform', SQLITE3_TEXT, $model[0]);
-            $stmt->bindValue(':model_id', SQLITE3_TEXT, $model[1]);
-            $stmt->bindValue(':display_name', SQLITE3_TEXT, $model[2]);
-            $stmt->bindValue(':intelligence_rank', SQLITE3_INTEGER, $model[3]);
-            $stmt->bindValue(':speed_rank', SQLITE3_INTEGER, $model[4]);
-            $stmt->bindValue(':size_label', SQLITE3_TEXT, $model[5]);
-            $stmt->bindValue(':rpm_limit', $model[6] === null ? SQLITE3_NULL : SQLITE3_INTEGER, $model[6]);
-            $stmt->bindValue(':rpd_limit', $model[7] === null ? SQLITE3_NULL : SQLITE3_INTEGER, $model[7]);
-            $stmt->bindValue(':tpm_limit', $model[8] === null ? SQLITE3_NULL : SQLITE3_INTEGER, $model[8]);
-            $stmt->bindValue(':tpd_limit', $model[9] === null ? SQLITE3_NULL : SQLITE3_INTEGER, $model[9]);
-            $stmt->bindValue(':monthly_token_budget', SQLITE3_TEXT, $model[10]);
-            $stmt->bindValue(':context_window', SQLITE3_INTEGER, $model[11]);
+            $stmt->bindValue(':platform', $model[0], SQLITE3_TEXT);
+            $stmt->bindValue(':model_id', $model[1], SQLITE3_TEXT);
+            $stmt->bindValue(':display_name', $model[2], SQLITE3_TEXT);
+            $stmt->bindValue(':intelligence_rank', $model[3], SQLITE3_INTEGER);
+            $stmt->bindValue(':speed_rank', $model[4], SQLITE3_INTEGER);
+            $stmt->bindValue(':size_label', $model[5], SQLITE3_TEXT);
+            $stmt->bindValue(':rpm_limit', $model[6] === null ? null : $model[6], $model[6] === null ? SQLITE3_NULL : SQLITE3_INTEGER);
+            $stmt->bindValue(':rpd_limit', $model[7] === null ? null : $model[7], $model[7] === null ? SQLITE3_NULL : SQLITE3_INTEGER);
+            $stmt->bindValue(':tpm_limit', $model[8] === null ? null : $model[8], $model[8] === null ? SQLITE3_NULL : SQLITE3_INTEGER);
+            $stmt->bindValue(':tpd_limit', $model[9] === null ? null : $model[9], $model[9] === null ? SQLITE3_NULL : SQLITE3_INTEGER);
+            $stmt->bindValue(':monthly_token_budget', $model[10], SQLITE3_TEXT);
+            $stmt->bindValue(':context_window', $model[11], SQLITE3_INTEGER);
             $stmt->execute();
         }
         
